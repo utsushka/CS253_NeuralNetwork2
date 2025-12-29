@@ -19,7 +19,7 @@ def main():
     input_size = 32 * 32
     num_classes = len(classes)
 
-    scratch_net = ScratchNN(input_size, 128, num_classes)
+    scratch_net = ScratchNN(input_size, 128, num_classes, learning_rate=0.05)
     lib_net = LibraryNN((32, 32), num_classes)
 
     print("--- Проверка моделей ---")
@@ -29,7 +29,7 @@ def main():
         print("Загружена самописная модель.")
     else:
         print("Обучение самописной модели...")
-        scratch_net.train(X_train, y_train, epochs=50)
+        scratch_net.train(X_train, y_train, epochs=200)
         scratch_net.save(SCRATCH_MODEL_PATH)
 
     # Тест самописной
